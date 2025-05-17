@@ -2,7 +2,6 @@ import express from "express";
 import handlebars from "express-handlebars";
 
 const dirname = import.meta.dirname;
-
 const app = express();
 const helpers = {
     getTime: () => `Текущее время: ${new Date().toLocaleTimeString()}`,
@@ -23,10 +22,10 @@ app.get('/', (req, res) => {
     res.render('index', { 
         messages: ["Handlebar works!", "Шаблонизатор работает!", "idk"],
         title: "Handlebars",
-        content: "капса не было :o"
+        content: "капса не было"
     });
 });
 
 app.listen(3000, () => {
-    console.log('App listening on port 3000!');
+    console.log('App listening on port 3000');
 });
