@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<%- include('layouts/head.ejs') -%>
+
+    <body>
+        <h1>Main</h1>
+        <p>
+            <small>
+                <i>
+                    <%= getTime() %>
+                </i>
+            </small>
+        </p>
+        <h2>Messages: </h2>
+        <ul class="list bg-base-100 rounded-box shadow-md">
+            <% for (const message of messages) { %>
+            <li>
+                <pre> <%= message %> </pre>
+            </li>
+            <% } %>
+        </ul>
+
+        <p><%= toUppercase(content) %></p>
+
+        <%- include('partials/footer.ejs') -%>
+    </body>
+
+    </html>

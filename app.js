@@ -1,5 +1,4 @@
 import express from "express";
-import handlebars from "express-handlebars";
 
 const dirname = import.meta.dirname;
 const app = express();
@@ -7,22 +6,17 @@ const helpers = {
     getTime: () => `Текущее время: ${new Date().toLocaleTimeString()}`,
     toUppercase: (str) => str.toUpperCase()
 }
+app.locals.getTime = helpers.getTime;
+app.locals.toUppercase = helpers.toUppercase;
 
-app.engine('hbs', handlebars.engine({
-    defaultLayout: 'global',
-    layoutsDir: dirname + '/views/layouts',
-    partialsDir: dirname + '/views/partials',
-    extname: 'hbs',
-    helpers
-}));
-app.set('view engine', 'hbs');
+app.set('view engine', 'ejs');
 app.set('partials', dirname + '/views/partials');
 
 app.get('/', (req, res) => {
     res.render('index', { 
-        messages: ["Handlebar works!", "Шаблонизатор работает!", "idk"],
-        title: "Handlebars",
-        content: "капса не было"
+        messages: ["EJS works!", "Теги непонятные", "Синтаксис пока больше всех нравится"],
+        title: "EJS",
+        content: "Здесь капса тоже не было"
     });
 });
 
