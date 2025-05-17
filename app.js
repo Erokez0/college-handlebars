@@ -1,6 +1,5 @@
 import express from "express";
 
-const dirname = import.meta.dirname;
 const app = express();
 const helpers = {
     getTime: () => `Текущее время: ${new Date().toLocaleTimeString()}`,
@@ -9,14 +8,15 @@ const helpers = {
 app.locals.getTime = helpers.getTime;
 app.locals.toUppercase = helpers.toUppercase;
 
-app.set('view engine', 'ejs');
-app.set('partials', dirname + '/views/partials');
+app.set('view engine', 'pug');
 
 app.get('/', (req, res) => {
     res.render('index', { 
-        messages: ["EJS works!", "Теги непонятные", "Синтаксис пока больше всех нравится"],
-        title: "EJS",
-        content: "Здесь капса тоже не было"
+        messages: ["Pug works!", "Красиво всё же", "Самый непонятный синтаксис"],
+        title: "Pug",
+        content: "Здесь капса так и нет",
+        getTime: helpers.getTime,
+        toUppercase: helpers.toUppercase
     });
 });
 
